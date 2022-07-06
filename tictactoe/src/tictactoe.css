@@ -1,0 +1,12 @@
+.Container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width:30vw;
+}
+
+.cell{
+    list-style: none;
+    width:10vw;
+    height:5vw;
+    border:1px black solid;
+}
