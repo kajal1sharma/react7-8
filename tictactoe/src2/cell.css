@@ -1,0 +1,15 @@
+.tictactoeContainer{
+display: grid;
+grid-template-columns: auto auto auto;
+width:15vw;
+height:12vh;
+}
+
+.cell{
+    list-style: none;
+    width:5vw;
+    height:4vh;
+    border:solid 2px black;
+    padding: 20px 20px;
+    text-align: center;
+}
