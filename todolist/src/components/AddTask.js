@@ -1,14 +1,15 @@
 import Box from '@mui/material/Box';
 import TextField  from '@mui/material/TextField';
 
-function AddTask(){
+function AddTask({textHandler,setState}){
     
     return (
         <Box>
             <TextField id="filled-basic" 
             label="Filled" 
             variant="filled"
-            // onchange={textHandler}
+             onChange={textHandler}
+             onKeyPress={setState}
             />
         </Box>
     )

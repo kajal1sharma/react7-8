@@ -7,14 +7,26 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 
-export default function DisplayTask() {
-    
+export default function DisplayTask({taskName}) {
+    console.log(taskName);
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             <List>
-                <ListItem>
+
+              {taskName.map(ele=>{
+                return <>
+                  <ListItem>
                     <ListItemButton>
-                    <ListItemText primary="hey this is first task"></ListItemText>
+                    <ListItemText primary={ele}></ListItemText>
+
+                    </ListItemButton>    
+                  </ListItem>
+                  <Divider/>
+               </>
+              })}
+                {/* <ListItem>
+                    <ListItemButton>
+                    <ListItemText primary={taskName}></ListItemText>
 
                     </ListItemButton>    
                 </ListItem>
@@ -24,8 +36,8 @@ export default function DisplayTask() {
                     <ListItemText primary="hey this is second task"></ListItemText>
 
                     </ListItemButton>    
-                </ListItem>
-            </List>
+                </ListItem> */}
+            </List> 
 
     </Box>
    
