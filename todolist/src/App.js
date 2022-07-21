@@ -1,12 +1,31 @@
 import './App.css';
 import AddTask from './components/AddTask'
 import DisplayTask from "./components/DisplayTask"
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import TaskModel from './taskModel';
 import getDataFirebase from "./firebase/getdataFirebase"
 function App() {
+
   let arr=[];
-  const [ taskName, setTaskName] =useState([{name:"add Task", status:"active"}]);
+  const [ taskName, setTaskName] = useState([]);
+  const [a , seta]=useState(0)
+  async function getData(){
+    arr=await getDataFirebase();
+    seta(90)
+
+    setTaskName(arr);
+    
+  }
+  useEffect(()=>{
+    console.log("useeffect1"); 
+  },[a,taskName]);
+  
+  useEffect(()=>{
+    console.log("useeffect 2")
+    getData();
+  },[]);
+
+ 
 
   let name="some task"
   function textHandler(event){
@@ -14,12 +33,8 @@ function App() {
      name=event.target.value
    
   }
- async function getData(){
-    arr=await getDataFirebase();
-    console.log(arr);
-    
-  }
-  getData();
+ 
+//   getData();
   function setState(event){
    // console.log(event)
       if(event.key==="Enter"){
@@ -39,7 +54,8 @@ function App() {
 
   return (
     <div className="App">
-     
+       {console.log(a+"-----------------------")}
+      
       <AddTask textHandler={textHandler} setState={setState}/>
       <DisplayTask taskName={taskName} deleteHandler={deleteHandler}/>
     </div>
