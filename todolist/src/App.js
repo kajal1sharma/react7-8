@@ -1,65 +1,41 @@
-import './App.css';
-import AddTask from './components/AddTask'
-import DisplayTask from "./components/DisplayTask"
-import {useState, useEffect} from 'react'
-import TaskModel from './taskModel';
-import getDataFirebase from "./firebase/getdataFirebase"
-function App() {
+import React,{useReducer} from 'react'
+import Login from './components/Login'
+import TodoContainer from './components/todoContainer'
 
-  let arr=[];
-  const [ taskName, setTaskName] = useState([]);
-  const [a , seta]=useState(0)
-  async function getData(){
-    arr=await getDataFirebase();
-    seta(90)
-
-    setTaskName(arr);
-    
-  }
-  useEffect(()=>{
-    console.log("useeffect1"); 
-  },[a,taskName]);
-  
-  useEffect(()=>{
-    console.log("useeffect 2")
-    getData();
-  },[]);
-
+function reducerFn(statePrevious,action ){
  
-
-  let name="some task"
-  function textHandler(event){
-    console.log(event.target.value)
-     name=event.target.value
-   
+  if(action.type==="CHECK"){
+    return {...statePrevious, email:action.payload}
   }
- 
-//   getData();
-  function setState(event){
-   // console.log(event)
-      if(event.key==="Enter"){
-        let obj=new TaskModel(name, "active")
-        // let arr=;
-        // arr.push(name);
-        // console.log(arr)
-        setTaskName([...taskName,obj]);
-      }
-  }
+  else if(action.type==="VERIFY"){
+    if(statePrevious.email.includes("@")){
+      return {...statePrevious, status:true}
+    }
 
-  function deleteHandler(index){
-    let arr=taskName;
-    arr.splice(index,1)
-    setTaskName([...arr])
   }
-
-  return (
-    <div className="App">
-       {console.log(a+"-----------------------")}
-      
-      <AddTask textHandler={textHandler} setState={setState}/>
-      <DisplayTask taskName={taskName} deleteHandler={deleteHandler}/>
-    </div>
-  );
+  return {...statePrevious}
 }
 
-export default App;
+const App = () => {
+
+  const [loginState, dispatchFn] = useReducer( reducerFn,{email:"", status:false})
+ 
+  const emailHandler=(event)=>{
+      let email = event.target.value;
+      let action={type:"CHECK", payload:email}
+      dispatchFn(action);
+  } 
+  const verifyHandler=()=>{
+      let action  = {type :"VERIFY"}
+      dispatchFn(action);
+  }
+  return (
+    <div>
+      
+      <Login emailHandler={emailHandler} verifyHandler= {verifyHandler}/>
+      {loginState.status?<TodoContainer/>:<></>}
+    </div>
+  )
+}
+
+export default App
