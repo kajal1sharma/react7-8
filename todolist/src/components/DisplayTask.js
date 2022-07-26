@@ -1,13 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import { Button } from '@mui/material';
-
-
+import {SingleTask} from './SingleTask';
 export default function DisplayTask({taskName,deleteHandler}) {
     console.log(taskName);
   return (
@@ -15,19 +9,7 @@ export default function DisplayTask({taskName,deleteHandler}) {
             <List>
 
               {taskName.map((ele, index)=>{
-                return <>
-                  <ListItem>
-                    <ListItemButton>
-                    <ListItemText primary={ele.name}></ListItemText>
-
-                    </ListItemButton>  
-                        {ele.status}
-                    <Button onClick={(event)=>{deleteHandler(index)}}>
-                      Delete
-                    </Button>  
-                  </ListItem>
-                  <Divider/>
-               </>
+                return <SingleTask ele={ele} deleteHandler={deleteHandler} index={index}/>
               })}
                 {/* <ListItem>
                     <ListItemButton>

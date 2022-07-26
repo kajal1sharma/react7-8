@@ -31,9 +31,7 @@ const App = () => {
   }
   return (
     <div>
-      
-      <Login emailHandler={emailHandler} verifyHandler= {verifyHandler}/>
-      {loginState.status?<TodoContainer/>:<></>}
+      {loginState.status?<TodoContainer/>:<Login emailHandler={emailHandler} verifyHandler= {verifyHandler}/>}
     </div>
   )
 }

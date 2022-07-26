@@ -4,10 +4,12 @@ import DisplayTask from "./DisplayTask"
 import {useState, useEffect} from 'react'
 import TaskModel from '../taskModel';
 import getDataFirebase from "../firebase/getdataFirebase"
+import Context1 from './context';
 function TodoContainer() {
 
   let arr=[];
   const [ taskName, setTaskName] = useState([]);
+  const [status, setStatus] =useState(true);
   const [a , seta]=useState(0)
   async function getData(){
     arr=await getDataFirebase();
@@ -50,15 +52,18 @@ function TodoContainer() {
     let arr=taskName;
     arr.splice(index,1)
     setTaskName([...arr])
+    setStatus(status?false:true);
   }
 
   return (
+    <Context1.Provider value={{status:status}}>
     <div className="App">
        {console.log(a+"-----------------------")}
       
       <AddTask textHandler={textHandler} setState={setState}/>
       <DisplayTask taskName={taskName} deleteHandler={deleteHandler}/>
     </div>
+    </Context1.Provider>
   );
 }
 
