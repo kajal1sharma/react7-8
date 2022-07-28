@@ -9,7 +9,7 @@ import { containerClasses } from '@mui/system';
 
 
 
-const SingleTask = ({ele, deleteHandler, index}) => {
+const SingleTask = ({ele, index}) => {
     const contextObject=useContext(Context1);
    
   return (
@@ -22,7 +22,7 @@ const SingleTask = ({ele, deleteHandler, index}) => {
 
               </ListItemButton>  
                   {ele.status}
-              <Button onClick={(event)=>{deleteHandler(index)}}>
+              <Button onClick={(event)=>{contextObject.deleteHandler(index)}}>
                 Delete
               </Button>  
             </ListItem>

@@ -7,6 +7,8 @@ import getDataFirebase from "../firebase/getdataFirebase"
 import Context1 from './context';
 function TodoContainer() {
 
+  useEffect(()=>{},[])
+
   let arr=[];
   const [ taskName, setTaskName] = useState([]);
   const [status, setStatus] =useState(true);
@@ -56,12 +58,12 @@ function TodoContainer() {
   }
 
   return (
-    <Context1.Provider value={{status:status}}>
+    <Context1.Provider value={{status:status,deleteHandler:deleteHandler}}>
     <div className="App">
        {console.log(a+"-----------------------")}
       
       <AddTask textHandler={textHandler} setState={setState}/>
-      <DisplayTask taskName={taskName} deleteHandler={deleteHandler}/>
+      <DisplayTask taskName={taskName} />
     </div>
     </Context1.Provider>
   );

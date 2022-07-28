@@ -1,7 +1,7 @@
 import React,{useReducer} from 'react'
 import Login from './components/Login'
 import TodoContainer from './components/todoContainer'
-
+import useStyle from './cusstomHooks/useStyle'
 function reducerFn(statePrevious,action ){
  
   if(action.type==="CHECK"){
@@ -29,8 +29,12 @@ const App = () => {
       let action  = {type :"VERIFY"}
       dispatchFn(action);
   }
+
+  const [styleObj,setStyle ]=useStyle("style1");
+
   return (
-    <div>
+    <div style={styleObj}>
+      <button onClick={()=>{setStyle()}}>changeStyle</button>
       {loginState.status?<TodoContainer/>:<Login emailHandler={emailHandler} verifyHandler= {verifyHandler}/>}
     </div>
   )
