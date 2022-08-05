@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import {Login, Registration, Home, SlotGame} from "./components";
 function App() {
+ const [userarr,setuser ]=useState([{}])
+
 const [ButtonPressed, setButtonPressed]=useState({loginButton:false, registrationButton:false});
  function loginHandler(){
 
