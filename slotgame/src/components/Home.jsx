@@ -12,7 +12,7 @@ const Home = ({loginHandler, registrationHandler}) => {
         <button onClick={registrationHandler}> Registration</button>
       </div>
       
-      <h1>WELCOME TO OUR SLOT GAME SITE</h1>
+      <h1 className='headingHome'>WELCOME TO OUR SLOT GAME SITE</h1>
     </div>
   )
 }

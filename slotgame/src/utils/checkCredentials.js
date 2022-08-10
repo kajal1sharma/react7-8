@@ -8,7 +8,7 @@ function checkCredentials(LoginObj){
         }
         for(let i=0;i<dataBaseObject.length;i++){
             if(LoginObj.username===dataBaseObject[i].username && LoginObj.password===dataBaseObject[i].password){
-              resolve({message:"user found"});  
+              resolve({message:"user found", scores:0, chances:50});  
             }
             
         }

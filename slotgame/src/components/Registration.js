@@ -34,7 +34,7 @@ function validation(){
 }
   return (
     <form onSubmit={submitHandler}>
-      {rerender.current+=1}
+    
       {console.log("how many timer rerendered",rerender.current)}
       <div style={{display:"flex", flexDirection:"column"}}>
         Registration<br/><br/>

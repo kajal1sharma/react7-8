@@ -5,7 +5,8 @@ const Login = () => {
 
   
   let LoginObj={username:"", password:""};
-  const [credentialsCheck, setCredentialsCheck]=useState(false);
+
+  const [userData, setUserData]= useState({credentialsCheck:false, scores:0, chances:0});
   function getPasswordHandler(event){
       LoginObj.password=event.target.value;
   }
@@ -17,7 +18,8 @@ const Login = () => {
     checkCredentials(LoginObj)
     .then((object)=>{
        if(object.message==="user found"){
-          setCredentialsCheck(true);
+          
+          setUserData({credentialsCheck:true, scores:object.scores, chances:object.chances});
        }
     })
     .catch((error)=>{
@@ -25,17 +27,26 @@ const Login = () => {
     })
   }
 
-  if(credentialsCheck) 
+  if(userData.credentialsCheck) 
       return (
-        <SlotGame/>
+        <SlotGame chances={userData.chances} scores={userData.scores}/>
       )
   else
       return (
-        <div>
-          <input onChange={getUsernameHandler}/>
-          <input onChange={getPasswordHandler}/>
-          <button onClick={checkCredentialsHandler}>Login</button>
+        <div style={{ display:"flex", flexDirection:"column", padding:'100px'}}>
+      
           
+          <div style={{ display:"flex", flexDirection:"column", padding:"20px"}}>
+            <span>Username</span>
+            <input onChange={getUsernameHandler} style={{padding:"5px"}}/>
+          </div>
+          <div style={{ display:"flex", flexDirection:"column", padding:"20px"}}>
+            <span>Password</span>
+            <input onChange={getPasswordHandler} style={{padding:"5px"}}/>
+          </div>
+          
+          <button style={{margin:"20px", padding:"5px 0px" ,border:'none',backgroundColor:"pink", fontWeight:'900'}} onClick={checkCredentialsHandler}>Login</button>
+        
         </div>
       )
 }
