@@ -23,6 +23,8 @@ const [ButtonPressed, setButtonPressed]=useState({loginButton:false, registratio
      {!ButtonPressed.registrationButton && !ButtonPressed.loginButton && 
      <Home loginHandler={loginHandler} 
      registrationHandler={registrationHandler}/>}
+
+     
     </div>
   );
 }

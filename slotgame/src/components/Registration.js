@@ -1,12 +1,14 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import user from '../utils/databaseUserInfo';
+import Calendar from 'react-calendar';
 
 const Registration = () => {
   const regObject={username:"", password:"", dob:""}
   const [re, setrender]=useState({});
-
- const rerender= useRef(0);
+  const [date, setDate] =useState(new Date());
+  
+  const rerender= useRef(0);
   const usernameRef= useRef(null);
   const passwordRef=useRef(null);
   const dobRef=useRef(null);
@@ -50,6 +52,8 @@ function validation(){
         <div style={{display:"flex", flexDirection:"column"}}>
           <span>dob</span>
           <input ref={dobRef} name="dob" />
+          <Calendar onChange={setDate}/>
+          {console.log(date)}
         </div>
       <input type="submit"/>
       </div>
