@@ -1,9 +1,14 @@
 
-let defaultState={name:"ram"}
+let defaultState={ name:"" }
 
 function reducer1(state=defaultState, action){
 
-    return {name:"sita"}
+    if(action.type==="nameChange")
+    {
+        return {...state,name:action.name}
+    }
+    
+    return {...state}
 }
 
 
