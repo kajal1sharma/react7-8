@@ -1,22 +1,27 @@
 
 import { useState } from 'react';
 import './App.css';
-import Book from "./Book"
+import Product from "./Product"
 import store from './store'
+import  {useSelector} from "react-redux";
 function App() {
 
-  let bookList =store.getState().bookInfo;
+  //let productList =store.getState().productInfo;
   
-   store.subscribe(()=>{
-    console.log(store.getState())
-   })
+  //  store.subscribe(()=>{
+  //   console.log(store.getState())
+  //  })
 
+let productList =useSelector((state)=>{
+                    
+                    return state.products.product
+                })
 
   return (
     <div className="App">
-        Book Store Application 
+         Store Application 
         
-        <Book bookList={bookList}/>
+        <Product productList={productList}/>
       
     </div>
   );
