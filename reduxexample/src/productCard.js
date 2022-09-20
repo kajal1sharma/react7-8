@@ -1,6 +1,7 @@
 import React from 'react'
 import store from "./store";
-import {addToCart} from "./productSlice";
+//import {addToCart} from "./productSlice";
+import  AsyncADDToCart from "./AddToCartAsync";
 import { useDispatch, useSelector } from 'react-redux';
 
 const ProductCard = ({product}) => {
@@ -11,7 +12,7 @@ const ProductCard = ({product}) => {
   const dispatch =useDispatch();
 
   function cartHandler(id){
-    dispatch(addToCart(id))
+    dispatch(AsyncADDToCart(id))
     //store.dispatch({type:"addToCart",id:id})
   }
 
