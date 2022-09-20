@@ -1,4 +1,4 @@
-import { addToCart } from "./productSlice"
+import { product } from "./productSlice"
 const axios = require("axios");
 
 const options = {
@@ -25,6 +25,7 @@ const options = {
 async function Request(dispatch,id){
  await axios.request(options).then(function (response) {
 	    console.log(response.data);
+      dispatch(product(response.data.products))
     }).catch(function (error) {
         console.error(error);
     });

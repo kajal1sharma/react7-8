@@ -2,6 +2,7 @@ import React from 'react'
 import ProductCard from './productCard'
 import { useSelector } from 'react-redux'
 const Product = ({productList}) => {
+  console.log("inside product list", productList)
   const cartList =useSelector(state=>{
     return state.products.cart;
   })
@@ -13,7 +14,7 @@ const Product = ({productList}) => {
         })}
       </ul>
 
-      cartList {cartList}
+      {/* cartList {cartList} */}
     </div>
   )
 }
